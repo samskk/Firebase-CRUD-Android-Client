@@ -16,6 +16,8 @@ import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
     private val ref =FirebaseDatabase.getInstance().getReference("name")
+    private val ref1 =FirebaseDatabase.getInstance().getReference("name list")
+
     private lateinit var editText : EditText
     private  lateinit var textView : TextView
 
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val upButton =findViewById<Button>(R.id.button)
         upButton.setOnClickListener {
             ref.setValue("$name")
+            ref1.push().setValue("$name")
         }
 
         ref.addValueEventListener(object : ValueEventListener {
