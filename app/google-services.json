@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "139371906383",
+    "firebase_url": "https://testrwinfirebase-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "testrwinfirebase",
+    "storage_bucket": "testrwinfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139371906383:android:478ede9b4891dc83bdf13a",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139371906383-hc9mjdkshf4576mev8nug49b4db8e2cq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYCuv3yaa4Kg-xP7pMERiEZn5p2Wba4gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139371906383-hc9mjdkshf4576mev8nug49b4db8e2cq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
