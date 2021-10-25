@@ -3,8 +3,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-
     }
 }
-rootProject.name = "My Application"
+rootProject.name = "Firebase-CRUD-Android-Client"
 include ':app'

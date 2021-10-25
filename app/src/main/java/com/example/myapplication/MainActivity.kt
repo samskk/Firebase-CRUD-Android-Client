@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -15,30 +14,30 @@ import com.google.firebase.database.ValueEventListener
 
 
 class MainActivity : AppCompatActivity() {
-    private val ref =FirebaseDatabase.getInstance().getReference("name")
-    private val ref1 =FirebaseDatabase.getInstance().getReference("name list")
 
+    private val ref = FirebaseDatabase.getInstance().getReference("name")
+    private val ref1 = FirebaseDatabase.getInstance().getReference("name list")
 
-    private lateinit var nameEditText : EditText
-    private lateinit var ageEditText : EditText
+    private lateinit var nameEditText: EditText
+    private lateinit var ageEditText: EditText
 
-    private  lateinit var textView : TextView
+    private lateinit var textView: TextView
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         nameEditText = findViewById(R.id.editTextTextPersonName)
-        ageEditText= findViewById(R.id.editTextNumber)
+        ageEditText = findViewById(R.id.editTextNumber)
 
         textView = findViewById(R.id.textView)
 
-        val upButton =findViewById<Button>(R.id.button)
+        val upButton = findViewById<Button>(R.id.button)
         upButton.setOnClickListener {
-            var  name =nameEditText.text.toString()
+            var name = nameEditText.text.toString()
             var age = ageEditText.text.toString()
-            var user1 = user(name,age)
+            var user1 = UserModel(name, age)
 
 //            ref.setValue("hi")
             ref.setValue(name)
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 // whenever data at this location is updated.
                 val value = dataSnapshot.getValue(String::class.java)
                 Log.d(TAG, "Value is: $value")
-                textView.text= "Whee! Our new value from firebase is  $value"
+                textView.text = "Whee! Our new value from firebase is  $value"
             }
 
             override fun onCancelled(error: DatabaseError) {

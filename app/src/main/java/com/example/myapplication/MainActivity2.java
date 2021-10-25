@@ -3,8 +3,6 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,33 +24,29 @@ public class MainActivity2 extends AppCompatActivity {
         items.add("Banana");
         items.add("Orange");
         items.add("Strawberry");
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String name =items.get(i);
-                makeTost(name);
-            }
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            String name = items.get(i);
+            makeToast(name);
         });
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                makeTost("removed"+items.get(i));
-                removeItem(i);
-                return false;
-            }
+        listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            makeToast("removed" + items.get(i));
+            removeItem(i);
+            return false;
         });
 
-        adapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1,items);
+        adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, items);
         listView.setAdapter(adapter);
-
     }
+
     Toast t;
-    private void makeTost(String s){
+
+    private void makeToast(String s) {
         if (t != null) t.cancel();
-        t =Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT);
+        t = Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT);
         t.show();
     }
-    public static void  removeItem(int remove){
+
+    public static void removeItem(int remove) {
         items.remove(remove);
         adapter.notifyDataSetChanged();
     }
