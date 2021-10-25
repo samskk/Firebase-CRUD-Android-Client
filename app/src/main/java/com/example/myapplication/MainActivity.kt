@@ -18,20 +18,31 @@ class MainActivity : AppCompatActivity() {
     private val ref =FirebaseDatabase.getInstance().getReference("name")
     private val ref1 =FirebaseDatabase.getInstance().getReference("name list")
 
-    private lateinit var editText : EditText
+
+    private lateinit var nameEditText : EditText
+    private lateinit var ageEditText : EditText
+
     private  lateinit var textView : TextView
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        editText = findViewById(R.id.editTextTextPersonName)
+
+        nameEditText = findViewById(R.id.editTextTextPersonName)
+        ageEditText= findViewById(R.id.editTextNumber)
+
         textView = findViewById(R.id.textView)
-        val name =editText.text
+
         val upButton =findViewById<Button>(R.id.button)
         upButton.setOnClickListener {
-            ref.setValue("$name")
-            ref1.push().setValue("$name")
+            var  name =nameEditText.text.toString()
+            var age = ageEditText.text.toString()
+            var user1 = user(name,age)
+
+//            ref.setValue("hi")
+            ref.setValue(name)
+            ref1.push().setValue(user1)
         }
 
         ref.addValueEventListener(object : ValueEventListener {

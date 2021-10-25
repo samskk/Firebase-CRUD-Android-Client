@@ -2,4 +2,6 @@
     <string name="app_name">My Application</string>
     <string name="textview">TextView</string>
     <string name="button">Button</string>
+    <string name="enter_your_name">enter your name</string>
+    <string name="enter_your_age">enter your age</string>
 </resources>
