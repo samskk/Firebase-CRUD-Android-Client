@@ -1,12 +1,17 @@
-package com.example.myapplication
+package com.example.myapplication.ui
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.MainActivity2
+import com.example.myapplication.R
+import com.example.myapplication.UserModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -32,8 +37,13 @@ class MainActivity : AppCompatActivity() {
         ageEditText = findViewById(R.id.editTextNumber)
 
         textView = findViewById(R.id.textView)
-
+        val listbutt= findViewById<Button>(R.id.button2)
         val upButton = findViewById<Button>(R.id.button)
+
+        listbutt.setOnClickListener {
+           val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        }
         upButton.setOnClickListener {
             var name = nameEditText.text.toString()
             var age = ageEditText.text.toString()
@@ -41,7 +51,10 @@ class MainActivity : AppCompatActivity() {
 
 //            ref.setValue("hi")
             ref.setValue(name)
-            ref1.push().setValue(user1)
+            ref1.push().setValue(user1).addOnSuccessListener {
+                Toast.makeText(this,"added",Toast.LENGTH_SHORT).show()  
+            }
+
         }
 
         ref.addValueEventListener(object : ValueEventListener {

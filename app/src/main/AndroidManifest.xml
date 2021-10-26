@@ -14,10 +14,12 @@
         android:theme="@style/Theme.MyApplication"
         tools:replace="android:appComponentFactory">
         <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
+            android:name=".MainActivity3"
+            android:exported="false"
+            android:label="@string/title_activity_main3"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
