@@ -16,12 +16,27 @@ class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.binding.textViewName.text = contacts[position].FullName
+        holder.binding.textViewContact.text = contacts[position].contactNumber
     }
 
     override fun getItemCount(): Int {
         return contacts.size
     }
+    fun addContact(contact: Contact){
+        if (!contacts.contains(contact)){
+            contacts.add(contact)
+        }else{
+            val index=contacts.indexOf(contact)
+            if (contact.isDeleted){
+                contacts.removeAt(index)
+            }else{
+                contacts[index] = contact
+            }
+        }
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(val binding: RecyclerViewContactBinding): RecyclerView.ViewHolder(binding.root){
 
     }

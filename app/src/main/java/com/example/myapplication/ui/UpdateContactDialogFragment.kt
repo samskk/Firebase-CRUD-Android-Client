@@ -12,10 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.data.Contact
 import com.example.myapplication.databinding.FragmentAddContactDialogBinding
+import com.example.myapplication.databinding.FragmentUpdateContactDialogBinding
 
-class AddContactDialogFragment : DialogFragment() {
+class UpdateContactDialogFragment(private val contact: Contact) : DialogFragment() {
 
-    private var _binding: FragmentAddContactDialogBinding? = null
+    private var _binding: FragmentUpdateContactDialogBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: ContactViewModel
@@ -31,7 +32,7 @@ class AddContactDialogFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAddContactDialogBinding.inflate(inflater, container, false)
+        _binding = FragmentUpdateContactDialogBinding.inflate(inflater, container, false)
 
        viewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
         return binding.root
@@ -40,17 +41,11 @@ class AddContactDialogFragment : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.result.observe(viewLifecycleOwner,Observer{
-            val message = if (it == null){
-                getString(R.string.added_contact)
-            }else{
-                getString(R.string.error, it.message)
-            }
-            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-            dismiss()
-        })
 
-        binding.buttonAdd.setOnClickListener {
+        binding.textFullName.setText(contact.FullName)
+        binding.editContentNumber.setText(contact.contactNumber)
+
+        binding.buttonUpdate.setOnClickListener {
             val fullName =binding.textFullName.text.toString().trim()
             val contactNumber =binding.editContentNumber.text.toString().trim()
 
@@ -63,11 +58,14 @@ class AddContactDialogFragment : DialogFragment() {
                 return@setOnClickListener
             }
 
-            val  contact =Contact()
+
             contact.FullName = fullName
             contact.contactNumber= contactNumber
 
-            viewModel.addContact(contact)
+            viewModel.updateContact(contact)
+            dismiss()
+            Toast.makeText(context, "Contact has been updated", Toast.LENGTH_SHORT).show()
+
         }
     }
 
